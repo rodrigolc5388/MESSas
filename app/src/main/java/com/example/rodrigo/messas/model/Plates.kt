@@ -7,7 +7,8 @@ object Plates: Serializable {
     private var plates: List<Plate> = listOf(
             Plate("Macarrones"),
             Plate("Pizza"),
-            Plate("Paella")
+            Plate("Paella"),
+            Plate("Hamburguesa")
     )
 
     val count

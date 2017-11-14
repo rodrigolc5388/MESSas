@@ -9,7 +9,7 @@ import android.widget.TextView
 import com.example.rodrigo.messas.model.Plate
 
 // PLATES PODRÍA SER NULL, POR LO QUE HABRÍA QUE USAR ? ALLÁ DONDE SE USE
-class TableRecyclerViewAdapter(val plates: List<Plate>): RecyclerView.Adapter<TableRecyclerViewAdapter.TableViewHolder>() {
+class TableRecyclerViewAdapter(val plates: List<Plate>?): RecyclerView.Adapter<TableRecyclerViewAdapter.TableViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): TableViewHolder {
         val view = LayoutInflater.from(parent?.context).inflate(R.layout.content_plate, parent, false)
@@ -17,10 +17,12 @@ class TableRecyclerViewAdapter(val plates: List<Plate>): RecyclerView.Adapter<Ta
     }
 
     override fun onBindViewHolder(holder: TableViewHolder?, position: Int) {
-        holder?.bindPlate(plates[position])
+        if (plates != null){
+            holder?.bindPlate(plates[position])
+        }
     }
 
-    override fun getItemCount(): Int = plates.size ?: 0
+    override fun getItemCount(): Int = plates?.size ?: 0
 
 
 
@@ -32,7 +34,8 @@ class TableRecyclerViewAdapter(val plates: List<Plate>): RecyclerView.Adapter<Ta
             val context = platePhoto.context
 
             plateName.text = plate.name
-            platePhoto.setImageResource(plate.image)
+            //TODO Ver de solucionar luego esto !!
+            platePhoto.setImageResource(plate.image!!)
         }
     }
 }
