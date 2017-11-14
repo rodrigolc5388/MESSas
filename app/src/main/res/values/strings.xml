@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MESSas</string>
+    <string name="content_plateView_description">Imagen del plato para la vista de mesa</string>
+    <string name="content_plateName">Nombre del plato</string>
 </resources>
