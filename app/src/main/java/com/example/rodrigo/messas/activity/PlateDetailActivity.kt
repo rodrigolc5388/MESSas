@@ -29,6 +29,9 @@ class PlateDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_plate_detail)
 
+        supportActionBar?.title = "Macarrones"
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
 //        val plate = intent.getSerializableExtra(EXTRA_PLATE) as Plate
 
 //        if (plate != null) {

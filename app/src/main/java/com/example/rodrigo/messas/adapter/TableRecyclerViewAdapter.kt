@@ -1,4 +1,4 @@
-package com.example.rodrigo.messas
+package com.example.rodrigo.messas.adapter
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.example.rodrigo.messas.R
 import com.example.rodrigo.messas.model.Plate
 
 // PLATES PODRÍA SER NULL, POR LO QUE HABRÍA QUE USAR ? ALLÁ DONDE SE USE
@@ -34,7 +35,7 @@ class TableRecyclerViewAdapter(val plates: List<Plate>?): RecyclerView.Adapter<T
             val context = platePhoto.context
 
             plateName.text = plate.name
-            //TODO Ver de solucionar luego esto !!
+            //TODO Ver de solucionar luego el uso de esto -> !!
             platePhoto.setImageResource(plate.image!!)
         }
     }

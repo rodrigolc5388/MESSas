@@ -9,7 +9,7 @@ import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.example.rodrigo.messas.R
-import com.example.rodrigo.messas.TableRecyclerViewAdapter
+import com.example.rodrigo.messas.adapter.TableRecyclerViewAdapter
 import com.example.rodrigo.messas.model.Plate
 
 class TableActivity : AppCompatActivity() {
