@@ -7,7 +7,7 @@ import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.MenuItem
 import com.example.rodrigo.messas.R
-import com.example.rodrigo.messas.adapter.TableRecyclerViewAdapter
+import com.example.rodrigo.messas.adapter.PlatesRecyclerViewAdapter
 import com.example.rodrigo.messas.model.Plate
 
 class PlatesActivity : AppCompatActivity() {
@@ -41,7 +41,7 @@ class PlatesActivity : AppCompatActivity() {
         platesList = findViewById(R.id.plates_list)
         platesList.layoutManager = GridLayoutManager(this, 2)
         platesList.itemAnimator = DefaultItemAnimator()
-        val adapter = TableRecyclerViewAdapter(plates)
+        val adapter = PlatesRecyclerViewAdapter(plates)
         platesList.adapter = adapter
     }
 

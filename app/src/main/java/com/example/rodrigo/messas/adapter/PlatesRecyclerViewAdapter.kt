@@ -10,7 +10,7 @@ import com.example.rodrigo.messas.R
 import com.example.rodrigo.messas.model.Plate
 
 // PLATES PODRÍA SER NULL, POR LO QUE HABRÍA QUE USAR ? ALLÁ DONDE SE USE
-class TableRecyclerViewAdapter(val plates: List<Plate>?): RecyclerView.Adapter<TableRecyclerViewAdapter.TableViewHolder>() {
+class PlatesRecyclerViewAdapter(val plates: List<Plate>?): RecyclerView.Adapter<PlatesRecyclerViewAdapter.TableViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): TableViewHolder {
         val view = LayoutInflater.from(parent?.context).inflate(R.layout.content_plate, parent, false)

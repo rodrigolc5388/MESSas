@@ -5,22 +5,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context="com.example.rodrigo.messas.activity.TableActivity">
 
-    <android.support.constraint.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+
+    <ListView
+        android:id="@+id/plates_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context="com.example.rodrigo.messas.activity.TableActivity">
-
-        <android.support.v7.app.AlertController.RecycleListView
-            android:id="@+id/table_plates_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-
-    </android.support.constraint.ConstraintLayout>
+        android:layout_height="match_parent"/>
 
     <android.support.design.widget.FloatingActionButton
     android:id="@+id/add_plate_button"
