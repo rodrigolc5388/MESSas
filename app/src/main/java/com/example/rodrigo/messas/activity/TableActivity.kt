@@ -22,7 +22,7 @@ class TableActivity : AppCompatActivity() {
         }
 
     lateinit var tablePlatesList: RecyclerView
-    // ESTO RECIBE UN `plates: List<Plate> = null`
+    // ESTO RECIBE UN `plates: List<Plate> = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

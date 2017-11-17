@@ -4,7 +4,7 @@ import java.io.Serializable
 
 
 object Plates: Serializable {
-    private var plates: List<Plate> = listOf(
+    var plates: List<Plate> = listOf(
             Plate("Macarrones"),
             Plate("Pizza"),
             Plate("Paella"),

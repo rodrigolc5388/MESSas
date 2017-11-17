@@ -35,8 +35,8 @@ class TableRecyclerViewAdapter(val plates: List<Plate>?): RecyclerView.Adapter<T
             val context = platePhoto.context
 
             plateName.text = plate.name
-            //TODO Ver de solucionar luego el uso de esto -> !!
-            platePhoto.setImageResource(plate.image!!)
+            //Ver de solucionar luego el uso de esto -> !!
+            //platePhoto.setImageResource(plate.image!!)
         }
     }
 }
