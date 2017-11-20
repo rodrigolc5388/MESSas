@@ -21,11 +21,6 @@ class PlatesActivity : AppCompatActivity() {
             Plate("Quiche"),
             Plate("Majadito")
     )
-    /*set(value) {
-            val adapter = TableRecyclerViewAdapter(value)
-            platesList.adapter = adapter
-
-        }*/
 
     lateinit var platesList: RecyclerView
 

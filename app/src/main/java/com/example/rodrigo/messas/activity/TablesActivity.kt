@@ -13,6 +13,8 @@ import com.example.rodrigo.messas.model.Tables
 
 class TablesActivity : AppCompatActivity() {
 
+    //private var onTableSelectedListener: OnTableSelectedListener? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tables)
@@ -20,7 +22,15 @@ class TablesActivity : AppCompatActivity() {
         val list = findViewById<ListView>(R.id.tables_list)
         val adapter = ArrayAdapter<Table>(this, android.R.layout.simple_list_item_1, Tables.toArray())
         list.adapter = adapter
+        list.setOnItemClickListener { parent, view, position, id ->
+            startActivity(TableActivity.intent(this,Tables.get(position), position))
+        }
 
-
+        /*list.setOnItemClickListener { parent, view, position, id ->
+            onTableSelectedListener?.onTableSelected(Tables.get(position), position) }*/
     }
+
+    /*interface OnTableSelectedListener {
+        fun onTableSelected(table: Table, position: Int)
+    }*/
 }
