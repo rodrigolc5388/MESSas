@@ -56,8 +56,8 @@ class TableActivity : AppCompatActivity() {
 
 
 
-        findViewById<FloatingActionButton>(R.id.add_plate_button)?.setOnClickListener { v: View ->
-
+        findViewById<FloatingActionButton>(R.id.add_plate_button)?.setOnClickListener {
+            startActivity(PlatesActivity.intent(this))
         }
     }
 

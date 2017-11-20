@@ -1,5 +1,7 @@
 package com.example.rodrigo.messas.activity
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DefaultItemAnimator
@@ -11,6 +13,14 @@ import com.example.rodrigo.messas.adapter.PlatesRecyclerViewAdapter
 import com.example.rodrigo.messas.model.Plate
 
 class PlatesActivity : AppCompatActivity() {
+
+    companion object {
+
+        fun intent(context: Context): Intent {
+            val intent = Intent(context, PlatesActivity::class.java)
+            return intent
+        }
+    }
 
     //ESTO DEBERÁ DESCARGAR SUS DATOS
     var plates: List<Plate>? = listOf(
