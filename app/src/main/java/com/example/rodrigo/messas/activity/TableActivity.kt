@@ -14,10 +14,11 @@ import android.widget.ListView
 import com.example.rodrigo.messas.R
 import com.example.rodrigo.messas.adapter.PlatesRecyclerViewAdapter
 import com.example.rodrigo.messas.model.Plate
+import com.example.rodrigo.messas.model.Plates
 
 class TableActivity : AppCompatActivity() {
 
-    var plates: List<Plate>? = mutableListOf(
+    /*var plates: List<Plate> = mutableListOf(
             Plate("Macarrones"),
             Plate("Hamburguesa"),
             Plate("Croquetas"),
@@ -26,13 +27,8 @@ class TableActivity : AppCompatActivity() {
             Plate("Lasaña"),
             Plate("Paella"),
             Plate("Carne"),
-            Plate("Pescado"),
-            Plate("Pescado"),
-            Plate("Pescado"),
-            Plate("Pescado"),
-            Plate("Pescado"),
             Plate("Pescado")
-    )
+    )*/
         /*set(value) {
             val adapter = PlatesRecyclerViewAdapter(value)
             tablePlatesList.adapter = adapter
@@ -52,7 +48,7 @@ class TableActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         platesList = findViewById(R.id.plates_list)
-        val adapter = ArrayAdapter<Plate>(this, android.R.layout.simple_list_item_1, plates?.toTypedArray())
+        val adapter = ArrayAdapter<Plate>(this, android.R.layout.simple_list_item_1, Plates.toArray())
         platesList.adapter = adapter
         platesList.
 

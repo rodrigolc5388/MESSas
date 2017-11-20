@@ -4,11 +4,16 @@ import java.io.Serializable
 
 
 object Plates: Serializable {
-    var plates: List<Plate> = listOf(
+    private var plates: List<Plate> = listOf(
             Plate("Macarrones"),
+            Plate("Hamburguesa"),
+            Plate("Croquetas"),
             Plate("Pizza"),
+            Plate("Perrito"),
+            Plate("Lasaña"),
             Plate("Paella"),
-            Plate("Hamburguesa")
+            Plate("Carne"),
+            Plate("Pescado")
     )
 
     val count

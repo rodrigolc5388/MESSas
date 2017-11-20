@@ -9,17 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.TablesActivity"></activity>
-        <activity android:name=".activity.TableActivity">
+        <activity android:name=".activity.TablesActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.PlateDetailActivity">
+        <activity android:name=".activity.TableActivity">
 
         </activity>
         <activity android:name=".activity.PlatesActivity">
+
+        </activity>
+        <activity android:name=".activity.PlateDetailActivity">
 
         </activity>
     </application>
