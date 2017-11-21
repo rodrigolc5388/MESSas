@@ -16,10 +16,12 @@ class PlateDetailActivity : AppCompatActivity() {
 
     companion object {
         private val EXTRA_PLATE = "EXTRA_PLATE"
+        private val EXTRA_POSITION = "EXTRA_POSITION"
 
-        fun intent(context: Context, plate: Plate): Intent {
+        fun intent(context: Context, plate: Plate, position: Int): Intent {
             val intent = Intent(context, PlateDetailActivity::class.java)
             intent.putExtra(EXTRA_PLATE, plate)
+            intent.putExtra(EXTRA_POSITION, position)
             return intent
         }
     }
@@ -29,10 +31,10 @@ class PlateDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_plate_detail)
 
-        supportActionBar?.title = "Macarrones"
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        val plate = intent.getSerializableExtra(EXTRA_PLATE) as Plate
 
-//        val plate = intent.getSerializableExtra(EXTRA_PLATE) as Plate
+        supportActionBar?.title = plate.name
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
 //        if (plate != null) {
 
@@ -47,7 +49,7 @@ class PlateDetailActivity : AppCompatActivity() {
             val addButton = findViewById<Button>(R.id.add_plate_button)
 
             photo.setImageResource(R.drawable.macarrones)
-            name.text = "Macarrones"
+            name.text = plate.name
             //glutenIcon.setImageResource(plate.allergens[position].icon)
             //fishIcon.setImageResource(plate.allergens[position].icon)
             //eggIcon.setImageResource(plate.allergens[position].icon)
@@ -55,7 +57,7 @@ class PlateDetailActivity : AppCompatActivity() {
             //peanutIcon.setImageResource(plate.allergens[position].icon)
             //val buttonText = getString(R.string.add_button_text, plate.price)
             //addButton.text = buttonText
-            addButton.text = "Agregar: 15€"
+            addButton.text = getString(R.string.add_button_text, plate.price)
 //        }
     }
 

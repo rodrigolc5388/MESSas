@@ -12,8 +12,11 @@ import com.example.rodrigo.messas.model.Plate
 // PLATES PODRÍA SER NULL, POR LO QUE HABRÍA QUE USAR ? ALLÁ DONDE SE USE
 class PlatesRecyclerViewAdapter(val plates: List<Plate>?): RecyclerView.Adapter<PlatesRecyclerViewAdapter.TableViewHolder>() {
 
+    var onClickListener: View.OnClickListener? = null
+
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): TableViewHolder {
         val view = LayoutInflater.from(parent?.context).inflate(R.layout.content_plate, parent, false)
+        view.setOnClickListener(onClickListener)
         return TableViewHolder(view)
     }
 

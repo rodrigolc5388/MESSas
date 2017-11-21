@@ -3,5 +3,5 @@
     <string name="content_plateView_description">Imagen del plato para la vista de mesa</string>
     <string name="content_plateName">Nombre del plato</string>
     <string name="plate_requests_tag">Observaciones:</string>
-    <string name="add_button_text">Agregar: %f€</string>
+    <string name="add_button_text">Agregar: %.2f€</string>
 </resources>

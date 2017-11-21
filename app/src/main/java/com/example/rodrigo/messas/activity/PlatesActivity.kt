@@ -8,9 +8,11 @@ import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.MenuItem
+import android.view.View
 import com.example.rodrigo.messas.R
 import com.example.rodrigo.messas.adapter.PlatesRecyclerViewAdapter
 import com.example.rodrigo.messas.model.Plate
+import com.example.rodrigo.messas.model.Plates
 
 class PlatesActivity : AppCompatActivity() {
 
@@ -23,7 +25,7 @@ class PlatesActivity : AppCompatActivity() {
     }
 
     //ESTO DEBERÁ DESCARGAR SUS DATOS
-    var plates: List<Plate>? = listOf(
+    var plates: List<Plate> = listOf(
             Plate("Macarrones"),
             Plate("Pizza"),
             Plate("Paella"),
@@ -46,8 +48,15 @@ class PlatesActivity : AppCompatActivity() {
         platesList = findViewById(R.id.plates_list)
         platesList.layoutManager = GridLayoutManager(this, 2)
         platesList.itemAnimator = DefaultItemAnimator()
-        val adapter = PlatesRecyclerViewAdapter(plates)
+        val adapter = PlatesRecyclerViewAdapter(Plates.toList())
+        adapter.onClickListener = View.OnClickListener { v: View ->
+            val position = platesList.getChildAdapterPosition(v)
+            val plate = Plates.get(position)
+            startActivity(PlateDetailActivity.intent(this, plate, position))
+        }
         platesList.adapter = adapter
+
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
