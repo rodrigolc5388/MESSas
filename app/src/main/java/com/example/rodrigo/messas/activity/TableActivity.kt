@@ -12,6 +12,7 @@ import android.widget.ListView
 import com.example.rodrigo.messas.R
 import com.example.rodrigo.messas.model.Plate
 import com.example.rodrigo.messas.model.Table
+import com.example.rodrigo.messas.model.Tables
 
 class TableActivity : AppCompatActivity() {
 
@@ -30,6 +31,7 @@ class TableActivity : AppCompatActivity() {
 
 
     lateinit var platesList: ListView
+    lateinit var table: Table
     lateinit var tablePlates: MutableList<Plate>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,8 +40,9 @@ class TableActivity : AppCompatActivity() {
 
 
         // PENDIENTE: LIST<PLATE> debería o no ser (?) en el modelo?
-        val table = intent.getSerializableExtra(EXTRA_TABLE) as Table
-            tablePlates = table.plates
+        val position = intent.getSerializableExtra(EXTRA_POSITION) as Int
+        table = Tables.get(position)
+        tablePlates = table.plates
 
         // PENDIENE AÑADIR "TOTAL MESA : €€€" A LA ACTION BAR"
         supportActionBar?.title = table.name
