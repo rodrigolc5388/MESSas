@@ -52,7 +52,10 @@ class PlatesActivity : AppCompatActivity() {
         adapter.onClickListener = View.OnClickListener { v: View ->
             val position = platesList.getChildAdapterPosition(v)
             val plate = Plates.get(position)
-            startActivity(PlateDetailActivity.intent(this, plate, position))
+            val intent = PlateDetailActivity.intent(this, plate, position)
+            intent.addFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT)
+            startActivity(intent)
+            finish()
         }
         platesList.adapter = adapter
 

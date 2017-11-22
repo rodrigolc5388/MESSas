@@ -1,7 +1,9 @@
 package com.example.rodrigo.messas.activity
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.ListView
@@ -23,14 +25,9 @@ class TablesActivity : AppCompatActivity() {
         val adapter = ArrayAdapter<Table>(this, android.R.layout.simple_list_item_1, Tables.toArray())
         list.adapter = adapter
         list.setOnItemClickListener { parent, view, position, id ->
-            startActivity(TableActivity.intent(this,Tables.get(position), position))
+            val table = Tables.get(position)
+            val intent = TableActivity.intent(this, table, position )
+            startActivity(intent)
         }
-
-        /*list.setOnItemClickListener { parent, view, position, id ->
-            onTableSelectedListener?.onTableSelected(Tables.get(position), position) }*/
     }
-
-    /*interface OnTableSelectedListener {
-        fun onTableSelected(table: Table, position: Int)
-    }*/
 }

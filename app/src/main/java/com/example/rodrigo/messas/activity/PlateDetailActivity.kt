@@ -1,5 +1,6 @@
 package com.example.rodrigo.messas.activity
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
@@ -11,6 +12,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.example.rodrigo.messas.R
 import com.example.rodrigo.messas.model.Plate
+import java.io.Serializable
 
 class PlateDetailActivity : AppCompatActivity() {
 
@@ -58,6 +60,15 @@ class PlateDetailActivity : AppCompatActivity() {
             //val buttonText = getString(R.string.add_button_text, plate.price)
             //addButton.text = buttonText
             addButton.text = getString(R.string.add_button_text, plate.price)
+
+            addButton.setOnClickListener {
+                val intent = Intent()
+                intent.putExtra("EXTRA_PLATE_RESULT", plate as Serializable)
+                setResult(Activity.RESULT_OK, intent)
+                finish()
+            }
+
+
 //        }
     }
 
