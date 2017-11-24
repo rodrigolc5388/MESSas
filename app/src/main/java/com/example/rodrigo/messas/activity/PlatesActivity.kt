@@ -24,16 +24,6 @@ class PlatesActivity : AppCompatActivity() {
         }
     }
 
-    //ESTO DEBERÁ DESCARGAR SUS DATOS
-    var plates: List<Plate> = listOf(
-            Plate("Macarrones"),
-            Plate("Pizza"),
-            Plate("Paella"),
-            Plate("Hamburguesa"),
-            Plate("Quiche"),
-            Plate("Majadito")
-    )
-
     lateinit var platesList: RecyclerView
 
 
