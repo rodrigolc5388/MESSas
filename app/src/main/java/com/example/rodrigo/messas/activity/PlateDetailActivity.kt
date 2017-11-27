@@ -74,7 +74,8 @@ class PlateDetailActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         if (item?.itemId == android.R.id.home) {
-            // Sabemos que se ha pulsado la flecha de 'back'
+            val intent = Intent()
+            setResult(Activity.RESULT_CANCELED, intent)
             finish()
             return true
         }

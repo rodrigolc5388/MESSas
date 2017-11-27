@@ -1,5 +1,6 @@
 package com.example.rodrigo.messas.activity
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -60,9 +61,11 @@ class TableActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        val resultPlate = data?.getSerializableExtra("EXTRA_PLATE_RESULT") as Plate
-        tablePlates.add(resultPlate)
-        platesList.adapter = ArrayAdapter<Plate>(this, android.R.layout.simple_list_item_1, tablePlates.toTypedArray())
+        if(resultCode == Activity.RESULT_OK) {
+            val resultPlate = data?.getSerializableExtra("EXTRA_PLATE_RESULT") as Plate
+            tablePlates.add(resultPlate)
+            platesList.adapter = ArrayAdapter<Plate>(this, android.R.layout.simple_list_item_1, tablePlates.toTypedArray())
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
