@@ -25,7 +25,7 @@ object Plates: Serializable {
     )*/
 
     var plates: MutableList<Plate> = mutableListOf()
-    //lateinit var plates: List<Plate>
+    //lateinit var plates: MutableList<Plate>
 
     val count
         get() = plates?.size

@@ -39,7 +39,7 @@ class PlatesActivity : AppCompatActivity() {
         supportActionBar?.title = "Platos"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        if (Plates.plates.size == 0) {
+        if (Plates.plates.isEmpty()) {
             updatePlates()
         } else {
             platesListSetter()
@@ -80,7 +80,5 @@ class PlatesActivity : AppCompatActivity() {
             finish()
         }
         platesList.adapter = adapter
-
     }
-
 }
