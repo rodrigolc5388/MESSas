@@ -24,33 +24,20 @@ object Plates: Serializable {
             Plate("Pescado", 8.20f)
     )*/
 
-    private var plates: List<Plate> = updatePlates()
+    var plates: MutableList<Plate> = mutableListOf()
+    //lateinit var plates: List<Plate>
 
     val count
         get() = plates?.size
 
 
-    operator fun get(i: Int) = plates[i]
+    operator fun get(i: Int) = plates?.get(i)
 
 
     fun toList() = plates?.toList()
 
-    private fun updatePlates(): List<Plate> {
 
-        var downloadedPlates: List<Plate> = mutableListOf()
-
-        async(UI){
-            val newPlates: Deferred<List<Plate>> = bg {
-                downloadPlates()
-            }
-
-            downloadedPlates = newPlates.await()
-        }
-        return downloadedPlates
-    }
-
-
-    fun downloadPlates(): List<Plate> {
+    fun downloadPlates(): MutableList<Plate> {
             val url = URL("http://www.mocky.io/v2/5a17e00d2c0000091a596c60")
             val jsonString = Scanner(url.openStream(), "UTF-8").useDelimiter("\\A").next()
 

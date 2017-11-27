@@ -10,7 +10,7 @@
 
 
     <ListView
-        android:id="@+id/plates_list"
+        android:id="@+id/table_plates_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
