@@ -61,9 +61,11 @@ class PlatesActivity : AppCompatActivity() {
             val newPlates: Deferred<MutableList<Plate>> = bg {
                 Plates.downloadPlates()
             }
-                Plates.plates = newPlates.await()
+
+            Plates.plates = newPlates.await()
+            platesListSetter()
         }
-        platesListSetter()
+
     }
 
     fun platesListSetter() {
