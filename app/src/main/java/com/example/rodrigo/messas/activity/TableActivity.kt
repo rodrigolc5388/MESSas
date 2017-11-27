@@ -49,7 +49,7 @@ class TableActivity : AppCompatActivity() {
         supportActionBar?.title = table.name
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        platesList = findViewById(R.id.plates_list)
+        platesList = findViewById(R.id.table_plates_list)
         platesList.adapter = ArrayAdapter<Plate>(this, android.R.layout.simple_list_item_1, tablePlates.toTypedArray())
 
 

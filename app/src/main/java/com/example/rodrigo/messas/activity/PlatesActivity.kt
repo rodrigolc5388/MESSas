@@ -13,6 +13,10 @@ import com.example.rodrigo.messas.R
 import com.example.rodrigo.messas.adapter.PlatesRecyclerViewAdapter
 import com.example.rodrigo.messas.model.Plate
 import com.example.rodrigo.messas.model.Plates
+import kotlinx.coroutines.experimental.Deferred
+import kotlinx.coroutines.experimental.android.UI
+import kotlinx.coroutines.experimental.async
+import org.jetbrains.anko.coroutines.experimental.bg
 
 class PlatesActivity : AppCompatActivity() {
 
@@ -25,7 +29,7 @@ class PlatesActivity : AppCompatActivity() {
     }
 
     lateinit var platesList: RecyclerView
-
+    lateinit var adapter: PlatesRecyclerViewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,20 +39,11 @@ class PlatesActivity : AppCompatActivity() {
         supportActionBar?.title = "Platos"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        platesList = findViewById(R.id.plates_list)
-        platesList.layoutManager = GridLayoutManager(this, 2)
-        platesList.itemAnimator = DefaultItemAnimator()
-        val adapter = PlatesRecyclerViewAdapter(Plates.toList())
-        adapter.onClickListener = View.OnClickListener { v: View ->
-            val position = platesList.getChildAdapterPosition(v)
-            val plate = Plates.get(position)
-            val intent = PlateDetailActivity.intent(this, plate, position)
-            intent.addFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT)
-            startActivity(intent)
-            finish()
+        if (Plates.plates.isEmpty()) {
+            updatePlates()
+        } else {
+            platesListSetter()
         }
-        platesList.adapter = adapter
-
 
     }
 
@@ -59,5 +54,33 @@ class PlatesActivity : AppCompatActivity() {
             return true
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    fun updatePlates() {
+        async(UI){
+            val newPlates: Deferred<MutableList<Plate>> = bg {
+                Plates.downloadPlates()
+            }
+
+            Plates.plates = newPlates.await()
+            platesListSetter()
+        }
+
+    }
+
+    fun platesListSetter() {
+        platesList = findViewById(R.id.plates_list)
+        platesList.layoutManager = GridLayoutManager(this, 2)
+        platesList.itemAnimator = DefaultItemAnimator()
+        adapter = PlatesRecyclerViewAdapter(Plates.plates)
+        adapter.onClickListener = View.OnClickListener { v: View ->
+            val position = platesList.getChildAdapterPosition(v)
+            val plate = Plates.get(position)
+            val intent = PlateDetailActivity.intent(this, plate, position)
+            intent.addFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT)
+            startActivity(intent)
+            finish()
+        }
+        platesList.adapter = adapter
     }
 }
