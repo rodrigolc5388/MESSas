@@ -4,4 +4,5 @@
     <string name="content_plateName">Nombre del plato</string>
     <string name="plate_requests_tag">Observaciones:</string>
     <string name="add_button_text">Agregar: %.2f€</string>
+    <string name="bill_button_text">Total: %.2f€</string>
 </resources>

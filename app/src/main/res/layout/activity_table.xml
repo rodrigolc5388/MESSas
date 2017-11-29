@@ -8,7 +8,6 @@
     android:layout_height="match_parent"
     tools:context="com.example.rodrigo.messas.activity.TableActivity">
 
-
     <ListView
         android:id="@+id/table_plates_list"
         android:layout_width="match_parent"

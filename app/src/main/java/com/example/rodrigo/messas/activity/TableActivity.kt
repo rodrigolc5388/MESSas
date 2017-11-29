@@ -6,7 +6,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.ArrayAdapter
 import android.widget.ListView
@@ -34,6 +35,7 @@ class TableActivity : AppCompatActivity() {
     lateinit var platesList: ListView
     lateinit var table: Table
     lateinit var tablePlates: MutableList<Plate>
+    var totalBill: Float = 0f
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,7 +47,6 @@ class TableActivity : AppCompatActivity() {
         table = Tables.get(position)
         tablePlates = table.plates
 
-        // PENDIENE AÑADIR "TOTAL MESA : €€€" A LA ACTION BAR"
         supportActionBar?.title = table.name
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
@@ -64,16 +65,45 @@ class TableActivity : AppCompatActivity() {
         if(resultCode == Activity.RESULT_OK) {
             val resultPlate = data?.getSerializableExtra("EXTRA_PLATE_RESULT") as Plate
             tablePlates.add(resultPlate)
+            updateBill()
             platesList.adapter = ArrayAdapter<Plate>(this, android.R.layout.simple_list_item_1, tablePlates.toTypedArray())
         }
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        if (item?.itemId == android.R.id.home) {
-            // Sabemos que se ha pulsado la flecha de 'back'
-            finish()
-            return true
+    fun updateBill() {
+        for (plateIndex in 0..tablePlates.size-1) {
+            val plate = tablePlates.get(plateIndex)
+            val platePrice = plate.price
+            totalBill += platePrice
         }
-        return super.onOptionsItemSelected(item)
     }
+
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater.inflate(R.menu.menu_bill, menu)
+        return true
+    }
+
+
+    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
+        val billButton = menu?.findItem(R.id.bill_button)
+        val title = getString(R.string.bill_button_text, totalBill)
+        billButton?.setTitle(title)
+        return true
+    }
+
+
+    override fun onOptionsItemSelected(item: MenuItem?) = when (item?.itemId){
+
+        R.id.bill_button -> {
+
+
+            true
+        }
+        android.R.id.home -> {
+            finish()
+            true
+        }
+        else -> super.onOptionsItemSelected(item)
+        }
 }

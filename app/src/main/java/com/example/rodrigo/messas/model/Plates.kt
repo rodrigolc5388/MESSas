@@ -1,31 +1,14 @@
 package com.example.rodrigo.messas.model
 
-import kotlinx.coroutines.experimental.Deferred
-import kotlinx.coroutines.experimental.android.UI
-import kotlinx.coroutines.experimental.async
-import org.jetbrains.anko.coroutines.experimental.bg
 import org.json.JSONObject
 import java.io.Serializable
 import java.net.URL
 import java.util.*
 
 
-
 object Plates: Serializable {
-    /*private var plates: List<Plate> = listOf(
-            Plate("Macarrones", 10.5f),
-            Plate("Hamburguesa", 4.50f),
-            Plate("Croquetas", 3.25f),
-            Plate("Pizza", 9f),
-            Plate("Perrito", 1.50f),
-            Plate("Lasaña", 12f),
-            Plate("Paella", 24.50f),
-            Plate("Carne", 13.50f),
-            Plate("Pescado", 8.20f)
-    )*/
 
     var plates: MutableList<Plate> = mutableListOf()
-    //lateinit var plates: MutableList<Plate>
 
     val count
         get() = plates?.size
