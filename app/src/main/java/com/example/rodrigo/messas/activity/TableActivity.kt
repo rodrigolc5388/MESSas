@@ -52,6 +52,10 @@ class TableActivity : AppCompatActivity() {
 
         platesList = findViewById(R.id.table_plates_list)
         platesList.adapter = ArrayAdapter<Plate>(this, android.R.layout.simple_list_item_1, tablePlates.toTypedArray())
+        platesList.setOnItemClickListener { parent, view, position, id ->
+            val plate = tablePlates.get(position)
+            startActivity(PlateDetailActivity.intent(this, plate, position))
+        }
 
 
         findViewById<FloatingActionButton>(R.id.add_plate_button)?.setOnClickListener {
