@@ -15,8 +15,6 @@ import com.example.rodrigo.messas.model.Tables
 
 class TablesActivity : AppCompatActivity() {
 
-    //private var onTableSelectedListener: OnTableSelectedListener? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tables)

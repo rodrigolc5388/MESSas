@@ -35,8 +35,7 @@ class PlatesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_plates)
 
-        // TITLE AL CENTRO; NOMBRE A UN RECURSO
-        supportActionBar?.title = "Platos"
+        supportActionBar?.title = getString(R.string.plates_activity_title)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         if (Plates.plates.isEmpty()) {
@@ -49,7 +48,6 @@ class PlatesActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         if (item?.itemId == android.R.id.home) {
-            // Sabemos que se ha pulsado la flecha de 'back'
             finish()
             return true
         }

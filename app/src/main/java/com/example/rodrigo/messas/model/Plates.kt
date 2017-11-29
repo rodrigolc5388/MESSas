@@ -11,13 +11,10 @@ object Plates: Serializable {
     var plates: MutableList<Plate> = mutableListOf()
 
     val count
-        get() = plates?.size
+        get() = plates.size
 
 
-    operator fun get(i: Int) = plates?.get(i)
-
-
-    fun toList() = plates?.toList()
+    operator fun get(i: Int) = plates.get(i)
 
 
     fun downloadPlates(): MutableList<Plate> {

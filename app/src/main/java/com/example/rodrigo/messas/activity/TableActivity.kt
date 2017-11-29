@@ -33,18 +33,16 @@ class TableActivity : AppCompatActivity() {
 
 
     lateinit var platesList: ListView
-    lateinit var table: Table
     lateinit var tablePlates: MutableList<Plate>
     lateinit var totalBill: MutableList<Float>
+    lateinit var billButton: MenuItem
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_table)
 
-
-        // PENDIENTE: LIST<PLATE> debería o no ser (?) en el modelo?
         val position = intent.getSerializableExtra(EXTRA_POSITION) as Int
-        table = Tables.get(position)
+        var table = Tables.get(position)
         tablePlates = table.plates
         totalBill = table.totalBill
 
@@ -70,8 +68,7 @@ class TableActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if(resultCode == Activity.RESULT_OK) {
             val resultPlate = data?.getSerializableExtra("EXTRA_PLATE_RESULT") as Plate
-            tablePlates.add(resultPlate)
-            totalBill.add(resultPlate.price)
+            updateData(resultPlate)
             platesList.adapter = ArrayAdapter<Plate>(this, android.R.layout.simple_list_item_1, tablePlates.toTypedArray())
         }
     }
@@ -83,9 +80,9 @@ class TableActivity : AppCompatActivity() {
 
 
     override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
-        val billButton = menu?.findItem(R.id.bill_button)
+        billButton = menu!!.findItem(R.id.bill_button)
         val title = getString(R.string.bill_button_text, totalBill.sum())
-        billButton?.setTitle(title)
+        billButton.setTitle(title)
         return true
     }
 
@@ -94,7 +91,7 @@ class TableActivity : AppCompatActivity() {
         R.id.bill_button -> {
             AlertDialog.Builder(this)
                     .setTitle(getString(R.string.bill_button_text, totalBill.sum()))
-                    .setMessage("Se cobrará la mesa y se eliminarán los pedidos")
+                    .setMessage(getString(R.string.alert_dialog_message))
                     .setPositiveButton("Ok", {dialog, _ ->
                         dialog.dismiss()
                         tablePlates.clear()
@@ -111,4 +108,10 @@ class TableActivity : AppCompatActivity() {
         }
         else -> super.onOptionsItemSelected(item)
         }
+
+    fun updateData(plate: Plate) {
+        tablePlates.add(plate)
+        totalBill.add(plate.price)
+        billButton.setTitle(getString(R.string.bill_button_text, totalBill.sum()))
+    }
 }
