@@ -6,6 +6,7 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -33,10 +34,14 @@ class PlateDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_plate_detail)
 
+
         val plate = intent.getSerializableExtra(EXTRA_PLATE) as Plate
 
         supportActionBar?.title = plate.name
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        // Evito que el teclado aparezca automáticamente
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN)
+
 
 //        if (plate != null) {
 

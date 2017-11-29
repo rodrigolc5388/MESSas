@@ -105,9 +105,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/requests_tag"
-        android:inputType="text|textMultiLine"
+        android:inputType="text|textImeMultiLine"
         android:singleLine="false"
         android:scrollbars = "vertical"
+        android:imeOptions="actionDone"
         android:textAppearance="@style/TextAppearance.AppCompat.Small.Inverse"
         tools:text="Aquí irán las peticiones especiales del plato hechas por el cliente" />
 
