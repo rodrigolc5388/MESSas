@@ -1,13 +1,13 @@
 package com.example.rodrigo.messas.activity
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
-import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.ArrayAdapter
 import android.widget.ListView
@@ -76,15 +76,6 @@ class TableActivity : AppCompatActivity() {
         }
     }
 
-    /*fun updateBill() {
-        for (plateIndex in 0..tablePlates.size-1) {
-            val plate = tablePlates.get(plateIndex)
-            val platePrice = plate.price
-            table.totalBill = table.totalBill + platePrice
-        }
-    }*/
-
-
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater = menuInflater.inflate(R.menu.menu_bill, menu)
         return true
@@ -101,8 +92,17 @@ class TableActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem?) = when (item?.itemId){
         R.id.bill_button -> {
-
-
+            AlertDialog.Builder(this)
+                    .setTitle(getString(R.string.bill_button_text, totalBill.sum()))
+                    .setMessage("Se cobrará la mesa y se eliminarán los pedidos")
+                    .setPositiveButton("Ok", {dialog, _ ->
+                        dialog.dismiss()
+                        tablePlates.clear()
+                        totalBill.clear()
+                        this.finish()
+                    })
+                    .setNegativeButton("Cancelar",{ dialog, _ -> dialog.dismiss()})
+                    .show()
             true
         }
         android.R.id.home -> {
