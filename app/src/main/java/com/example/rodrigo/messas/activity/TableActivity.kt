@@ -35,7 +35,7 @@ class TableActivity : AppCompatActivity() {
     lateinit var platesList: ListView
     lateinit var table: Table
     lateinit var tablePlates: MutableList<Plate>
-    var totalBill: Float = 0f
+    lateinit var totalBill: MutableList<Float>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,9 +46,11 @@ class TableActivity : AppCompatActivity() {
         val position = intent.getSerializableExtra(EXTRA_POSITION) as Int
         table = Tables.get(position)
         tablePlates = table.plates
+        totalBill = table.totalBill
 
         supportActionBar?.title = table.name
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
 
         platesList = findViewById(R.id.table_plates_list)
         platesList.adapter = ArrayAdapter<Plate>(this, android.R.layout.simple_list_item_1, tablePlates.toTypedArray())
@@ -69,18 +71,18 @@ class TableActivity : AppCompatActivity() {
         if(resultCode == Activity.RESULT_OK) {
             val resultPlate = data?.getSerializableExtra("EXTRA_PLATE_RESULT") as Plate
             tablePlates.add(resultPlate)
-            updateBill()
+            totalBill.add(resultPlate.price)
             platesList.adapter = ArrayAdapter<Plate>(this, android.R.layout.simple_list_item_1, tablePlates.toTypedArray())
         }
     }
 
-    fun updateBill() {
+    /*fun updateBill() {
         for (plateIndex in 0..tablePlates.size-1) {
             val plate = tablePlates.get(plateIndex)
             val platePrice = plate.price
-            totalBill += platePrice
+            table.totalBill = table.totalBill + platePrice
         }
-    }
+    }*/
 
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -91,14 +93,13 @@ class TableActivity : AppCompatActivity() {
 
     override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
         val billButton = menu?.findItem(R.id.bill_button)
-        val title = getString(R.string.bill_button_text, totalBill)
+        val title = getString(R.string.bill_button_text, totalBill.sum())
         billButton?.setTitle(title)
         return true
     }
 
 
     override fun onOptionsItemSelected(item: MenuItem?) = when (item?.itemId){
-
         R.id.bill_button -> {
 
 
