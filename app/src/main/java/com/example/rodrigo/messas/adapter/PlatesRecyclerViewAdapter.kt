@@ -9,7 +9,6 @@ import android.widget.TextView
 import com.example.rodrigo.messas.R
 import com.example.rodrigo.messas.model.Plate
 
-// PLATES PODRÍA SER NULL, POR LO QUE HABRÍA QUE USAR ? ALLÁ DONDE SE USE
 class PlatesRecyclerViewAdapter(val plates: List<Plate>?): RecyclerView.Adapter<PlatesRecyclerViewAdapter.TableViewHolder>() {
 
     var onClickListener: View.OnClickListener? = null
@@ -36,10 +35,8 @@ class PlatesRecyclerViewAdapter(val plates: List<Plate>?): RecyclerView.Adapter<
 
         fun bindPlate(plate: Plate) {
             val context = platePhoto.context
-
             plateName.text = plate.name
-            //Ver de solucionar luego el uso de esto -> !!
-            //platePhoto.setImageResource(plate.image!!)
+            platePhoto.setImageResource(plate.image)
         }
     }
 }

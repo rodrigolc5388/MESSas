@@ -34,47 +34,70 @@ class PlateDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_plate_detail)
 
-
         val plate = intent.getSerializableExtra(EXTRA_PLATE) as Plate
+        val allergens = plate.allergens
 
-        supportActionBar?.title = plate.name
+        supportActionBar?.title = plate.name.capitalize()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         // Evito que el teclado aparezca automáticamente
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN)
 
+        val name = findViewById<TextView>(R.id.plate_name)
+        val photo = findViewById<ImageView>(R.id.plate_photo)
+        val addButton = findViewById<Button>(R.id.add_plate_button)
+        val glutenIcon = findViewById<ImageView>(R.id.gluten_icon)
+        val fishIcon = findViewById<ImageView>(R.id.fish_icon)
+        val eggIcon = findViewById<ImageView>(R.id.egg_icon)
+        val milkIcon = findViewById<ImageView>(R.id.milk_icon)
+        val peanutIcon = findViewById<ImageView>(R.id.peanut_icon)
+        val requests = findViewById<EditText>(R.id.plate_requests_text)
 
-//        if (plate != null) {
 
-            val name = findViewById<TextView>(R.id.plate_name)
-            val photo = findViewById<ImageView>(R.id.plate_photo)
-            val glutenIcon = findViewById<ImageView>(R.id.gluten_icon)
-            val fishIcon = findViewById<ImageView>(R.id.fish_icon)
-            val eggIcon = findViewById<ImageView>(R.id.egg_icon)
-            val milkIcon = findViewById<ImageView>(R.id.milk_icon)
-            val peanutIcon = findViewById<ImageView>(R.id.peanut_icon)
-            val requests = findViewById<EditText>(R.id.plate_requests_text)
-            val addButton = findViewById<Button>(R.id.add_plate_button)
+        name.text = plate.name.capitalize()
+        photo.setImageResource(plate.image)
 
-            photo.setImageResource(R.drawable.macarrones)
-            name.text = plate.name
-            //glutenIcon.setImageResource(plate.allergens[position].icon)
-            //fishIcon.setImageResource(plate.allergens[position].icon)
-            //eggIcon.setImageResource(plate.allergens[position].icon)
-            //milkIcon.setImageResource(plate.allergens[position].icon)
-            //peanutIcon.setImageResource(plate.allergens[position].icon)
-            //val buttonText = getString(R.string.add_button_text, plate.price)
-            //addButton.text = buttonText
-            addButton.text = getString(R.string.add_button_text, plate.price)
+        for (allergenIndex in 0..allergens.size-1){
+            val allergen = allergens.get(allergenIndex)
 
-            addButton.setOnClickListener {
-                val intent = Intent()
-                intent.putExtra("EXTRA_PLATE_RESULT", plate as Serializable)
-                setResult(Activity.RESULT_OK, intent)
-                finish()
+            if(allergen.name == "egg" && allergen.exists == true){
+                eggIcon.setImageResource(R.drawable.egg_yes)
+            } else {
+                eggIcon.setImageResource(R.drawable.egg_no)
             }
 
+            if(allergen.name == "fish" && allergen.exists == true){
+                fishIcon.setImageResource(R.drawable.fish_yes)
+            } else {
+                fishIcon.setImageResource(R.drawable.fish_no)
+            }
 
-//        }
+            if(allergen.name == "gluten" && allergen.exists == true){
+                glutenIcon.setImageResource(R.drawable.gluten_yes)
+            } else {
+                glutenIcon.setImageResource(R.drawable.gluten_no)
+            }
+
+            if(allergen.name == "milk" && allergen.exists == true){
+                milkIcon.setImageResource(R.drawable.milk_yes)
+            } else {
+                milkIcon.setImageResource(R.drawable.milk_no)
+            }
+
+            if(allergen.name == "peanut" && allergen.exists == true){
+                peanutIcon.setImageResource(R.drawable.peanut_yes)
+            } else {
+                peanutIcon.setImageResource(R.drawable.peanut_no)
+            }
+        }
+
+
+        addButton.text = getString(R.string.add_button_text, plate.price)
+        addButton.setOnClickListener {
+            val intent = Intent()
+            intent.putExtra("EXTRA_PLATE_RESULT", plate as Serializable)
+            setResult(Activity.RESULT_OK, intent)
+            finish()
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
