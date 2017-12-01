@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.WindowManager
+import android.view.inputmethod.EditorInfo.IME_ACTION_DONE
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -35,7 +36,6 @@ class PlateDetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_plate_detail)
 
         val plate = intent.getSerializableExtra(EXTRA_PLATE) as Plate
-        //val allergens = plate.allergens
 
         supportActionBar?.title = plate.name.capitalize()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -56,6 +56,9 @@ class PlateDetailActivity : AppCompatActivity() {
         name.text = plate.name.capitalize()
         photo.setImageResource(plate.image)
 
+        // Sett imágenes íconos alérgenos
+        // Juanjo, SEGURO que debe haber una forma más elegante de hacer esto,
+        // pero no se me ocurrió ninguna ¯\_(ツ)_/¯
         for (allergenIndex in 0..plate.allergens.size-1){
             val allergen = plate.allergens.get(allergenIndex)
 
@@ -92,6 +95,18 @@ class PlateDetailActivity : AppCompatActivity() {
                     peanutIcon.setImageResource(R.drawable.peanut_yes)
                 } else {peanutIcon.setImageResource(R.drawable.peanut_no)
                 }
+            }
+        }
+
+        requests.setText(plate.requests)
+        requests.setOnEditorActionListener() { v, actionId, event ->
+            if(actionId == IME_ACTION_DONE){
+                val text = requests.text.toString()
+                plate.requests = text
+                requests.setText(plate.requests)
+                true
+            } else {
+                false
             }
         }
 
