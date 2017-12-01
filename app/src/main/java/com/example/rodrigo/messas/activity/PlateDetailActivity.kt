@@ -42,7 +42,6 @@ class PlateDetailActivity : AppCompatActivity() {
         // Evito que el teclado aparezca automáticamente
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN)
 
-        val name = findViewById<TextView>(R.id.plate_name)
         val photo = findViewById<ImageView>(R.id.plate_photo)
         val addButton = findViewById<Button>(R.id.add_plate_button)
         val glutenIcon = findViewById<ImageView>(R.id.gluten_icon)
@@ -52,8 +51,6 @@ class PlateDetailActivity : AppCompatActivity() {
         val peanutIcon = findViewById<ImageView>(R.id.peanut_icon)
         val requests = findViewById<EditText>(R.id.plate_requests_text)
 
-
-        name.text = plate.name.capitalize()
         photo.setImageResource(plate.image)
 
         // Sett imágenes íconos alérgenos
@@ -105,9 +102,8 @@ class PlateDetailActivity : AppCompatActivity() {
                 plate.requests = text
                 requests.setText(plate.requests)
                 true
-            } else {
-                false
             }
+            false
         }
 
 
