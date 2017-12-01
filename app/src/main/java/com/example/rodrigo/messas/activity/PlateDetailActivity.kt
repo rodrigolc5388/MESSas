@@ -35,7 +35,7 @@ class PlateDetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_plate_detail)
 
         val plate = intent.getSerializableExtra(EXTRA_PLATE) as Plate
-        val allergens = plate.allergens
+        //val allergens = plate.allergens
 
         supportActionBar?.title = plate.name.capitalize()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -56,37 +56,42 @@ class PlateDetailActivity : AppCompatActivity() {
         name.text = plate.name.capitalize()
         photo.setImageResource(plate.image)
 
-        for (allergenIndex in 0..allergens.size-1){
-            val allergen = allergens.get(allergenIndex)
+        for (allergenIndex in 0..plate.allergens.size-1){
+            val allergen = plate.allergens.get(allergenIndex)
 
-            if(allergen.name == "egg" && allergen.exists == true){
-                eggIcon.setImageResource(R.drawable.egg_yes)
-            } else {
-                eggIcon.setImageResource(R.drawable.egg_no)
+            if(allergen.name == "egg"){
+                if(allergen.exists == true){
+                    eggIcon.setImageResource(R.drawable.egg_yes)
+                } else {eggIcon.setImageResource(R.drawable.egg_no)
+                }
             }
 
-            if(allergen.name == "fish" && allergen.exists == true){
-                fishIcon.setImageResource(R.drawable.fish_yes)
-            } else {
-                fishIcon.setImageResource(R.drawable.fish_no)
+            if(allergen.name == "fish"){
+                if(allergen.exists == true){
+                    fishIcon.setImageResource(R.drawable.fish_yes)
+                } else {fishIcon.setImageResource(R.drawable.fish_no)
+                }
             }
 
-            if(allergen.name == "gluten" && allergen.exists == true){
-                glutenIcon.setImageResource(R.drawable.gluten_yes)
-            } else {
-                glutenIcon.setImageResource(R.drawable.gluten_no)
+            if(allergen.name == "gluten"){
+                if(allergen.exists == true){
+                    glutenIcon.setImageResource(R.drawable.gluten_yes)
+                } else {glutenIcon.setImageResource(R.drawable.gluten_no)
+                }
             }
 
-            if(allergen.name == "milk" && allergen.exists == true){
-                milkIcon.setImageResource(R.drawable.milk_yes)
-            } else {
-                milkIcon.setImageResource(R.drawable.milk_no)
+            if(allergen.name == "milk"){
+                if(allergen.exists == true){
+                    milkIcon.setImageResource(R.drawable.milk_yes)
+                } else {milkIcon.setImageResource(R.drawable.milk_no)
+                }
             }
 
-            if(allergen.name == "peanut" && allergen.exists == true){
-                peanutIcon.setImageResource(R.drawable.peanut_yes)
-            } else {
-                peanutIcon.setImageResource(R.drawable.peanut_no)
+            if(allergen.name == "peanut"){
+                if(allergen.exists == true){
+                    peanutIcon.setImageResource(R.drawable.peanut_yes)
+                } else {peanutIcon.setImageResource(R.drawable.peanut_no)
+                }
             }
         }
 
