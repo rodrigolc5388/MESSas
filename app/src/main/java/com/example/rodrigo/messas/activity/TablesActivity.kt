@@ -19,13 +19,6 @@ class TablesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tables)
 
-        val list = findViewById<ListView>(R.id.tables_list)
-        val adapter = ArrayAdapter<Table>(this, android.R.layout.simple_list_item_1, Tables.toArray())
-        list.adapter = adapter
-        list.setOnItemClickListener { parent, view, position, id ->
-            val table = Tables.get(position)
-            val intent = TableActivity.intent(this, table, position )
-            startActivity(intent)
-        }
+
     }
 }

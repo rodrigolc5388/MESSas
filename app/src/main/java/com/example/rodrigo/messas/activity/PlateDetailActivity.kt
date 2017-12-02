@@ -3,15 +3,14 @@ package com.example.rodrigo.messas.activity
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import android.view.WindowManager
 import android.view.inputmethod.EditorInfo.IME_ACTION_DONE
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
-import android.widget.TextView
 import com.example.rodrigo.messas.R
 import com.example.rodrigo.messas.model.Plate
 import java.io.Serializable
@@ -56,7 +55,7 @@ class PlateDetailActivity : AppCompatActivity() {
         // Sett imágenes íconos alérgenos
         // Juanjo, SEGURO que debe haber una forma más elegante de hacer esto,
         // pero no se me ocurrió ninguna ¯\_(ツ)_/¯
-        for (allergenIndex in 0..plate.allergens.size-1){
+        /*for (allergenIndex in 0..plate.allergens.size-1){
             val allergen = plate.allergens.get(allergenIndex)
 
             if(allergen.name == "egg"){
@@ -93,7 +92,7 @@ class PlateDetailActivity : AppCompatActivity() {
                 } else {peanutIcon.setImageResource(R.drawable.peanut_no)
                 }
             }
-        }
+        }*/
 
         requests.setText(plate.requests)
         requests.setOnEditorActionListener() { v, actionId, event ->
