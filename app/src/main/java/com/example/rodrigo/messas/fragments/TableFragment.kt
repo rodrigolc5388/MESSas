@@ -3,17 +3,13 @@ package com.example.rodrigo.messas.fragments
 import android.app.Activity
 import android.app.AlertDialog
 import android.app.Fragment
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.FloatingActionButton
 import android.view.*
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import com.example.rodrigo.messas.R
 import com.example.rodrigo.messas.activity.PlateDetailActivity
-import com.example.rodrigo.messas.activity.PlatesActivity
-import com.example.rodrigo.messas.activity.TableActivity
 import com.example.rodrigo.messas.model.Plate
 import com.example.rodrigo.messas.model.Table
 import com.example.rodrigo.messas.model.Tables
@@ -22,25 +18,18 @@ class TableFragment: Fragment() {
 
     companion object {
 
-        private val EXTRA_TABLE = "EXTRA_TABLE"
-        private val EXTRA_POSITION = "EXTRA_POSITION"
+        private val EXTRA_TABLE_FRAGMENT = "EXTRA_TABLE_FRAGMENT"
+        private val EXTRA_POSITION_FRAGMENT = "EXTRA_POSITION_FRAGMENT"
 
-        fun tableIntent(table: Table, position: Int): TableFragment{
+        fun newInstance(table: Table, position: Int): TableFragment{
             val fragment = TableFragment()
             val arguments = Bundle()
-            arguments.putSerializable(EXTRA_TABLE, table)
-            arguments.putSerializable(EXTRA_POSITION, position)
+            arguments.putSerializable(EXTRA_TABLE_FRAGMENT, table)
+            arguments.putInt(EXTRA_POSITION_FRAGMENT, position)
             fragment.arguments = arguments
 
             return  fragment
         }
-
-        /*fun intent(context: Context, table: Table, position: Int): Intent {
-            val intent = Intent(context, TableActivity::class.java)
-            intent.putExtra(EXTRA_TABLE, table)
-            intent.putExtra(EXTRA_POSITION, position)
-            return intent
-        }*/
     }
 
     lateinit var root: View
@@ -52,10 +41,11 @@ class TableFragment: Fragment() {
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
         super.onCreateView(inflater, container, savedInstanceState)
 
-        inflater?.let{
-            root = it.inflate(R.layout.fragment_table, container, false)
-            val position = arguments.getSerializable(EXTRA_POSITION) as Int
-            var table = Tables.get(position)
+        if (inflater != null) {
+            root = inflater.inflate(R.layout.fragment_table, container, false)
+            val arg = arguments
+            val position = arg.getInt(EXTRA_POSITION_FRAGMENT)
+            val table = Tables.get(position)
             tablePlates = table.plates
             totalBill = table.totalBill
 
