@@ -22,7 +22,7 @@ class TablesFragment: Fragment() {
         super.onCreateView(inflater, container, savedInstanceState)
 
         inflater?.let{
-            root = inflater.inflate(R.layout.fragment_tables, container, false)
+            root = it.inflate(R.layout.fragment_tables, container, false)
             val list = root.findViewById<ListView>(R.id.tables_list)
             val adapter = ArrayAdapter<Table>(activity, android.R.layout.simple_list_item_1, Tables.toArray())
             list.adapter = adapter

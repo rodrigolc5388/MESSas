@@ -58,6 +58,15 @@ class PlateDetailActivity : AppCompatActivity() {
         /*for (allergenIndex in 0..plate.allergens.size-1){
             val allergen = plate.allergens.get(allergenIndex)
 
+            when(allergen.name){
+                "egg" -> {
+                    if(allergen.exists == true){
+                        eggIcon.setImageResource(R.drawable.egg_yes)
+                    } else {eggIcon.setImageResource(R.drawable.egg_no)
+                    }
+                }
+            }
+
             if(allergen.name == "egg"){
                 if(allergen.exists == true){
                     eggIcon.setImageResource(R.drawable.egg_yes)
