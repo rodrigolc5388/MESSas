@@ -9,7 +9,7 @@ import com.example.rodrigo.messas.fragments.TableFragment
 import com.example.rodrigo.messas.model.Table
 import com.example.rodrigo.messas.model.Tables
 
-class TableActivity : AppCompatActivity() {
+class TableActivity : AppCompatActivity(), TableFragment.OnAddPlateButtonListener {
 
     companion object {
 
@@ -42,5 +42,9 @@ class TableActivity : AppCompatActivity() {
         /*findViewById<FloatingActionButton>(R.id.add_plate_button)?.setOnClickListener {
             startActivityForResult(PlatesActivity.intent(this), 1)
         }*/
+    }
+
+    override fun onAddPlateButton() {
+        startActivityForResult(PlatesActivity.intent(this), 1)
     }
 }

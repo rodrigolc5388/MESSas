@@ -32,7 +32,6 @@ class TablesFragment: Fragment() {
                 val table = Tables.get(position)
                 onTableSelectedListener?.onTableSelected(table, position)
             }
-
         }
         return root
     }

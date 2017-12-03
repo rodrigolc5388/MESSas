@@ -3,6 +3,7 @@ package com.example.rodrigo.messas.fragments
 import android.app.Activity
 import android.app.AlertDialog
 import android.app.Fragment
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
@@ -11,7 +12,6 @@ import android.widget.ArrayAdapter
 import android.widget.ListView
 import com.example.rodrigo.messas.R
 import com.example.rodrigo.messas.activity.PlateDetailActivity
-import com.example.rodrigo.messas.activity.PlatesActivity
 import com.example.rodrigo.messas.model.Plate
 import com.example.rodrigo.messas.model.Table
 import com.example.rodrigo.messas.model.Tables
@@ -39,6 +39,7 @@ class TableFragment: Fragment() {
     lateinit var tablePlates: MutableList<Plate>
     lateinit var totalBill: MutableList<Float>
     lateinit var billButton: MenuItem
+    private var onAddPlateButtonListener: OnAddPlateButtonListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,8 +51,7 @@ class TableFragment: Fragment() {
 
         if (inflater != null) {
             root = inflater.inflate(R.layout.fragment_table, container, false)
-            val arg = arguments
-            val position = arg.getInt(EXTRA_POSITION_FRAGMENT)
+            val position = arguments.getInt(EXTRA_POSITION_FRAGMENT)
             val table = Tables.get(position)
             tablePlates = table.plates
             totalBill = table.totalBill
@@ -68,7 +68,8 @@ class TableFragment: Fragment() {
         }
 
         root.findViewById<FloatingActionButton>(R.id.add_plate_button)?.setOnClickListener {
-            startActivityForResult(PlatesActivity.intent(activity), 1)
+            onAddPlateButtonListener?.onAddPlateButton()
+            //startActivityForResult(PlatesActivity.intent(activity), 1)
         }
         return root
     }
@@ -126,4 +127,30 @@ class TableFragment: Fragment() {
         billButton.setTitle(getString(R.string.bill_button_text, totalBill.sum()))
     }
 
+
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        commonAttach(context)
+    }
+
+    override fun onAttach(activity: Activity?) {
+        super.onAttach(activity)
+        commonAttach(activity)
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        onAddPlateButtonListener = null
+    }
+
+    fun commonAttach(listener: Any?) {
+        if (listener is OnAddPlateButtonListener) {
+            onAddPlateButtonListener = listener
+        }
+    }
+
+
+    interface OnAddPlateButtonListener{
+        fun onAddPlateButton()
+    }
 }
