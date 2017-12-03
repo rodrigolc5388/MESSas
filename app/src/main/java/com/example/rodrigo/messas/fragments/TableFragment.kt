@@ -49,8 +49,8 @@ class TableFragment: Fragment() {
             tablePlates = table.plates
             totalBill = table.totalBill
 
-            activity.actionBar.title = table.name
-            activity.actionBar.setDisplayHomeAsUpEnabled(true)
+
+            //activity.actionBar.setDisplayHomeAsUpEnabled(true)
 
             platesList = root.findViewById(R.id.table_plates_list)
             platesList.adapter = ArrayAdapter<Plate>(activity, android.R.layout.simple_list_item_1, tablePlates.toTypedArray())

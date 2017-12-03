@@ -25,22 +25,21 @@ class TableActivity : AppCompatActivity() {
             return intent
         }
     }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_table)
 
         val position = intent.getSerializableExtra(EXTRA_POSITION) as Int
         val table = Tables.get(position)
+        supportActionBar?.title = table.name
+        //supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        //if (findViewById<View>(R.id.table_fragment) != null){
             if(fragmentManager.findFragmentById(R.id.table_fragment) == null){
                 val fragment = TableFragment.newInstance(table, position)
                 fragmentManager.beginTransaction()
                         .add(R.id.table_fragment, fragment)
                         .commit()
             }
-        //}
 
         findViewById<FloatingActionButton>(R.id.add_plate_button)?.setOnClickListener {
             startActivityForResult(PlatesActivity.intent(this), 1)

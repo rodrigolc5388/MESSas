@@ -8,11 +8,10 @@
     android:layout_height="match_parent"
     tools:context="com.example.rodrigo.messas.activity.TableActivity">
 
-   <fragment
+   <FrameLayout
        android:id="@+id/table_fragment"
        android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:name="com.example.rodrigo.messas.fragments.TableFragment"/>
+       android:layout_height="match_parent" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/add_plate_button"
