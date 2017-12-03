@@ -5,11 +5,13 @@ import android.app.AlertDialog
 import android.app.Fragment
 import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.FloatingActionButton
 import android.view.*
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import com.example.rodrigo.messas.R
 import com.example.rodrigo.messas.activity.PlateDetailActivity
+import com.example.rodrigo.messas.activity.PlatesActivity
 import com.example.rodrigo.messas.model.Plate
 import com.example.rodrigo.messas.model.Table
 import com.example.rodrigo.messas.model.Tables
@@ -38,6 +40,11 @@ class TableFragment: Fragment() {
     lateinit var totalBill: MutableList<Float>
     lateinit var billButton: MenuItem
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
         super.onCreateView(inflater, container, savedInstanceState)
 
@@ -58,6 +65,10 @@ class TableFragment: Fragment() {
                 val plate = tablePlates.get(position)
                 startActivity(PlateDetailActivity.intent(activity, plate, position))
             }
+        }
+
+        root.findViewById<FloatingActionButton>(R.id.add_plate_button)?.setOnClickListener {
+            startActivityForResult(PlatesActivity.intent(activity), 1)
         }
         return root
     }
@@ -114,4 +125,5 @@ class TableFragment: Fragment() {
         totalBill.add(plate.price)
         billButton.setTitle(getString(R.string.bill_button_text, totalBill.sum()))
     }
+
 }

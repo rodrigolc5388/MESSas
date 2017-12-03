@@ -3,9 +3,7 @@ package com.example.rodrigo.messas.activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.FloatingActionButton
 import android.support.v7.app.AppCompatActivity
-import android.view.View
 import com.example.rodrigo.messas.R
 import com.example.rodrigo.messas.fragments.TableFragment
 import com.example.rodrigo.messas.model.Table
@@ -32,7 +30,7 @@ class TableActivity : AppCompatActivity() {
         val position = intent.getSerializableExtra(EXTRA_POSITION) as Int
         val table = Tables.get(position)
         supportActionBar?.title = table.name
-        //supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
             if(fragmentManager.findFragmentById(R.id.table_fragment) == null){
                 val fragment = TableFragment.newInstance(table, position)
@@ -41,8 +39,8 @@ class TableActivity : AppCompatActivity() {
                         .commit()
             }
 
-        findViewById<FloatingActionButton>(R.id.add_plate_button)?.setOnClickListener {
+        /*findViewById<FloatingActionButton>(R.id.add_plate_button)?.setOnClickListener {
             startActivityForResult(PlatesActivity.intent(this), 1)
-        }
+        }*/
     }
 }
