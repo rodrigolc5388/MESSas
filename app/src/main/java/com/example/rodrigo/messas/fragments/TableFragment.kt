@@ -11,7 +11,6 @@ import android.view.*
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import com.example.rodrigo.messas.R
-import com.example.rodrigo.messas.activity.PlateDetailActivity
 import com.example.rodrigo.messas.model.Plate
 import com.example.rodrigo.messas.model.Table
 import com.example.rodrigo.messas.model.Tables
@@ -57,21 +56,16 @@ class TableFragment: Fragment() {
             tablePlates = table.plates
             totalBill = table.totalBill
 
-
-            //activity.actionBar.setDisplayHomeAsUpEnabled(true)
-
             platesList = root.findViewById(R.id.table_plates_list)
             platesList.adapter = ArrayAdapter<Plate>(activity, android.R.layout.simple_list_item_1, tablePlates.toTypedArray())
             platesList.setOnItemClickListener { parent, view, position, id ->
                 val plate = tablePlates.get(position)
                 onPlatesListSelectedPlateListener?.onPlatesListSelectedPlate(plate, position)
-                //startActivity(PlateDetailActivity.intent(activity, plate, position))
             }
         }
 
         root.findViewById<FloatingActionButton>(R.id.add_plate_button)?.setOnClickListener {
             onAddPlateButtonListener?.onAddPlateButton()
-            //startActivityForResult(PlatesActivity.intent(activity), 1)
         }
         return root
     }
