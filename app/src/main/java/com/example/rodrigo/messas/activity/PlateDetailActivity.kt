@@ -10,8 +10,9 @@ import android.view.WindowManager
 import com.example.rodrigo.messas.R
 import com.example.rodrigo.messas.fragments.PlateDetailFragment
 import com.example.rodrigo.messas.model.Plate
+import java.io.Serializable
 
-class PlateDetailActivity : AppCompatActivity() {
+class PlateDetailActivity : AppCompatActivity(), PlateDetailFragment.OnSetResultListener {
 
     companion object {
         private val EXTRA_PLATE = "EXTRA_PLATE"
@@ -53,6 +54,13 @@ class PlateDetailActivity : AppCompatActivity() {
             return true
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onSetResult(plate: Plate) {
+        val intent = Intent()
+        intent.putExtra("EXTRA_PLATE_RESULT", plate as Serializable)
+        setResult(Activity.RESULT_OK, intent)
+        finish()
     }
 }
 

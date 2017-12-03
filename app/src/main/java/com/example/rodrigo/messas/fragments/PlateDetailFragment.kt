@@ -2,6 +2,7 @@ package com.example.rodrigo.messas.fragments
 
 import android.app.Activity
 import android.app.Fragment
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -33,6 +34,7 @@ class PlateDetailFragment: Fragment() {
 
 
     lateinit var root: View
+    private var onSetResultListener: OnSetResultListener? = null
 
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -119,12 +121,39 @@ class PlateDetailFragment: Fragment() {
 
             addButton.text = getString(R.string.add_button_text, plate.price)
             addButton.setOnClickListener {
-                val intent = Intent()
-                intent.putExtra("EXTRA_PLATE_RESULT", plate as Serializable)
-                activity.setResult(Activity.RESULT_OK, intent)
-                activity.finish()
+                onSetResultListener?.onSetResult(plate)
+                //val intent = Intent()
+                //intent.putExtra("EXTRA_PLATE_RESULT", plate as Serializable)
+                //activity.setResult(Activity.RESULT_OK, intent)
+                //activity.finish()
             }
         }
         return root
+    }
+
+
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        commonAttach(context)
+    }
+
+    override fun onAttach(activity: Activity?) {
+        super.onAttach(activity)
+        commonAttach(activity)
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        onSetResultListener = null
+    }
+
+    fun commonAttach(listener: Any?) {
+        if (listener is OnSetResultListener) {
+            onSetResultListener = listener
+        }
+    }
+
+    interface OnSetResultListener{
+        fun onSetResult(plate: Plate)
     }
 }
