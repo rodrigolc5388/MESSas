@@ -3,9 +3,12 @@
 
 ### Sinopsis
 - Aplicación creada para un restaurante.  
-- Permite: llevar un control de los pedidos de cada una de las mesas, peticiones especiales para cada orden y el total de las consumisiones de una mesa.
+- Permite: 
+	- Llevar un control de los pedidos de cada una de las mesas.
+	- Añadir peticiones especiales para cada orden.
+	- Visualizar en tiempo real el total de las consumisiones de la mesa.
 
--
+---
 
 ### Ramas
 #### Master
@@ -16,7 +19,7 @@
 - La comunicación entre cada fragment y su activity se ha implementado utilizando siempre una interface.
 - El objetivo de crear un fragment para cada activity era implementar también una versión para tablets; actualmente esta versión no está implementada.
 
--
+---
 
 ### Pantallas
 #### TablesActivity 
