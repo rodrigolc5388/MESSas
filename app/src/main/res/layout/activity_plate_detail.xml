@@ -1,125 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.rodrigo.messas.activity.PlateDetailActivity">
 
-    <ImageView
-        android:id="@+id/plate_photo"
-        android:layout_width="0dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/macarrones" />
-
-    <ImageView
-        android:id="@+id/peanut_icon"
-        android:layout_width="30dp"
-        android:layout_height="29dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintEnd_toStartOf="@+id/fish_icon"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/milk_icon"
-        app:layout_constraintTop_toBottomOf="@+id/plate_photo"
-        app:srcCompat="@drawable/gluten" />
-
-    <ImageView
-        android:id="@+id/egg_icon"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/fish_icon"
-        app:layout_constraintTop_toBottomOf="@+id/plate_photo"
-        app:srcCompat="@drawable/gluten" />
-
-    <ImageView
-        android:id="@+id/milk_icon"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintEnd_toStartOf="@+id/peanut_icon"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/gluten_icon"
-        app:layout_constraintTop_toBottomOf="@+id/plate_photo"
-        app:srcCompat="@drawable/gluten" />
-
-    <ImageView
-        android:id="@+id/fish_icon"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintEnd_toStartOf="@+id/egg_icon"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/peanut_icon"
-        app:layout_constraintTop_toBottomOf="@+id/plate_photo"
-        app:srcCompat="@drawable/gluten" />
-
-    <ImageView
-        android:id="@+id/gluten_icon"
-        android:layout_width="30dp"
-        android:layout_height="29dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintEnd_toStartOf="@+id/milk_icon"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/plate_photo"
-        app:srcCompat="@drawable/gluten" />
-
-    <EditText
-        android:id="@+id/plate_requests_text"
-        android:layout_width="346dp"
-        android:layout_height="53dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/requests_tag"
-        android:inputType="text|textImeMultiLine"
-        android:singleLine="false"
-        android:scrollbars = "vertical"
-        android:imeOptions="actionDone"
-        android:textAppearance="@style/TextAppearance.AppCompat.Small.Inverse"
-        tools:text="Aquí irán las peticiones especiales del plato hechas por el cliente" />
-
-    <TextView
-        android:id="@+id/requests_tag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:text="@string/plate_requests_tag"
-        android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gluten_icon" />
-
-    <Button
-        android:id="@+id/add_plate_button"
-        android:layout_width="354dp"
-        android:layout_height="47dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:text="Agregar: 15€" />
+    <FrameLayout
+        android:id="@+id/plate_detail_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </android.support.constraint.ConstraintLayout>

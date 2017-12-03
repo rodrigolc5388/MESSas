@@ -8,6 +8,7 @@ import com.example.rodrigo.messas.R
 import com.example.rodrigo.messas.fragments.TableFragment
 import com.example.rodrigo.messas.model.Table
 import com.example.rodrigo.messas.model.Tables
+import kotlinx.android.synthetic.main.activity_table.*
 
 class TableActivity : AppCompatActivity(), TableFragment.OnAddPlateButtonListener {
 
@@ -42,6 +43,14 @@ class TableActivity : AppCompatActivity(), TableFragment.OnAddPlateButtonListene
         /*findViewById<FloatingActionButton>(R.id.add_plate_button)?.setOnClickListener {
             startActivityForResult(PlatesActivity.intent(this), 1)
         }*/
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        val fragment = supportFragmentManager.findFragmentById(R.id.table_fragment)
+        val fragment2 = fragmentManager.findFragmentById(R.id.table_fragment)
+        fragment2.onActivityResult(requestCode, resultCode, data)
     }
 
     override fun onAddPlateButton() {

@@ -4,23 +4,12 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.MenuItem
-import android.view.View
 import com.example.rodrigo.messas.R
-import com.example.rodrigo.messas.adapter.PlatesRecyclerViewAdapter
 import com.example.rodrigo.messas.fragments.PlatesFragment
-import com.example.rodrigo.messas.fragments.TableFragment
 import com.example.rodrigo.messas.model.Plate
-import com.example.rodrigo.messas.model.Plates
-import kotlinx.coroutines.experimental.Deferred
-import kotlinx.coroutines.experimental.android.UI
-import kotlinx.coroutines.experimental.async
-import org.jetbrains.anko.coroutines.experimental.bg
 
-class PlatesActivity : AppCompatActivity() {
+class PlatesActivity : AppCompatActivity(), PlatesFragment.OnSelectedPlateListener {
 
     companion object {
 
@@ -53,5 +42,11 @@ class PlatesActivity : AppCompatActivity() {
             return true
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onSelectedPlate(plate: Plate, position: Int) {
+        val intent = PlateDetailActivity.intent(this, plate, position)
+        intent.addFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT)
+        startActivity(intent)
     }
 }
