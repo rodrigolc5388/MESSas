@@ -59,7 +59,7 @@ class PlateDetailFragment: Fragment() {
             // Sett imágenes íconos alérgenos
             // Juanjo, SEGURO que debe haber una forma más elegante de hacer esto,
             // pero no se me ocurrió ninguna ¯\_(ツ)_/¯
-            /*for (allergenIndex in 0..plate.allergens.size-1){
+            for (allergenIndex in 0..plate.allergens.size-1){
                 val allergen = plate.allergens.get(allergenIndex)
 
                 when(allergen.name){
@@ -69,9 +69,38 @@ class PlateDetailFragment: Fragment() {
                         } else {eggIcon.setImageResource(R.drawable.egg_no)
                         }
                     }
+
+                    "fish" -> {
+                        if(allergen.exists == true){
+                            fishIcon.setImageResource(R.drawable.fish_yes)
+                        } else {fishIcon.setImageResource(R.drawable.fish_no)
+                        }
+                    }
+
+                    "gluten" -> {
+                        if(allergen.exists == true){
+                            glutenIcon.setImageResource(R.drawable.gluten_yes)
+                        } else {glutenIcon.setImageResource(R.drawable.gluten_no)
+                        }
+                    }
+
+                    "milk" -> {
+                        if(allergen.exists == true){
+                            milkIcon.setImageResource(R.drawable.milk_yes)
+                        } else {milkIcon.setImageResource(R.drawable.milk_no)
+                        }
+                    }
+
+                    "peanut" -> {
+                        if(allergen.exists == true){
+                            peanutIcon.setImageResource(R.drawable.peanut_yes)
+                        } else {peanutIcon.setImageResource(R.drawable.peanut_no)
+                        }
+                    }
+                    //else ->
                 }
 
-                if(allergen.name == "egg"){
+                /*if(allergen.name == "egg"){
                     if(allergen.exists == true){
                         eggIcon.setImageResource(R.drawable.egg_yes)
                     } else {eggIcon.setImageResource(R.drawable.egg_no)
@@ -104,8 +133,8 @@ class PlateDetailFragment: Fragment() {
                         peanutIcon.setImageResource(R.drawable.peanut_yes)
                     } else {peanutIcon.setImageResource(R.drawable.peanut_no)
                     }
-                }
-            }*/
+                }*/
+            }
 
             requests.setText(plate.requests)
             requests.setOnEditorActionListener() { v, actionId, event ->
@@ -122,10 +151,6 @@ class PlateDetailFragment: Fragment() {
             addButton.text = getString(R.string.add_button_text, plate.price)
             addButton.setOnClickListener {
                 onSetResultListener?.onSetResult(plate)
-                //val intent = Intent()
-                //intent.putExtra("EXTRA_PLATE_RESULT", plate as Serializable)
-                //activity.setResult(Activity.RESULT_OK, intent)
-                //activity.finish()
             }
         }
         return root
