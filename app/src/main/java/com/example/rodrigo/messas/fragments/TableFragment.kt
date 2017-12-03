@@ -40,6 +40,7 @@ class TableFragment: Fragment() {
     lateinit var totalBill: MutableList<Float>
     lateinit var billButton: MenuItem
     private var onAddPlateButtonListener: OnAddPlateButtonListener? = null
+    private var onPlatesListSelectedPlateListener: OnPlatesListSelectedPlateListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,7 +64,8 @@ class TableFragment: Fragment() {
             platesList.adapter = ArrayAdapter<Plate>(activity, android.R.layout.simple_list_item_1, tablePlates.toTypedArray())
             platesList.setOnItemClickListener { parent, view, position, id ->
                 val plate = tablePlates.get(position)
-                startActivity(PlateDetailActivity.intent(activity, plate, position))
+                onPlatesListSelectedPlateListener?.onPlatesListSelectedPlate(plate, position)
+                //startActivity(PlateDetailActivity.intent(activity, plate, position))
             }
         }
 
@@ -141,16 +143,25 @@ class TableFragment: Fragment() {
     override fun onDetach() {
         super.onDetach()
         onAddPlateButtonListener = null
+        onPlatesListSelectedPlateListener = null
     }
 
     fun commonAttach(listener: Any?) {
         if (listener is OnAddPlateButtonListener) {
             onAddPlateButtonListener = listener
         }
+
+        if (listener is OnPlatesListSelectedPlateListener){
+            onPlatesListSelectedPlateListener = listener
+        }
     }
 
 
     interface OnAddPlateButtonListener{
         fun onAddPlateButton()
+    }
+
+    interface OnPlatesListSelectedPlateListener{
+        fun onPlatesListSelectedPlate(plate: Plate, position: Int)
     }
 }

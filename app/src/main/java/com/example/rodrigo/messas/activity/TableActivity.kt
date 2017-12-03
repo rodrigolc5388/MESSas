@@ -6,11 +6,12 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.example.rodrigo.messas.R
 import com.example.rodrigo.messas.fragments.TableFragment
+import com.example.rodrigo.messas.model.Plate
 import com.example.rodrigo.messas.model.Table
 import com.example.rodrigo.messas.model.Tables
 import kotlinx.android.synthetic.main.activity_table.*
 
-class TableActivity : AppCompatActivity(), TableFragment.OnAddPlateButtonListener {
+class TableActivity : AppCompatActivity(), TableFragment.OnAddPlateButtonListener, TableFragment.OnPlatesListSelectedPlateListener {
 
     companion object {
 
@@ -55,5 +56,9 @@ class TableActivity : AppCompatActivity(), TableFragment.OnAddPlateButtonListene
 
     override fun onAddPlateButton() {
         startActivityForResult(PlatesActivity.intent(this), 1)
+    }
+
+    override fun onPlatesListSelectedPlate(plate: Plate, position: Int) {
+        startActivity(PlateDetailActivity.intent(this, plate, position))
     }
 }
